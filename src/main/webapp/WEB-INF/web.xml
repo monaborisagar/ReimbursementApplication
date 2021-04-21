@@ -27,4 +27,13 @@
     <servlet-name>LoginLogicServlet</servlet-name>
     <url-pattern>/loginpage</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.revature.controller.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logoutpage</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -64,7 +64,8 @@ public class LoginLogicServlet extends HttpServlet {
 			//response.sendRedirect(destination+".jsp");
 			 //request.getRequestDispatcher(destination+".jsp").forward(request, response);
 			request.getSession().setAttribute("error1", "Amount of items ordered is too big. No more than 100 is currently available.");
-			 response.sendRedirect(request.getHeader("Referer"));
+			 //response.sendRedirect(request.getHeader("Referer"));
+			 response.sendRedirect("loginpage.jsp");
 		}
 		
 	}

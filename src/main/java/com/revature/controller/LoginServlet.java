@@ -8,7 +8,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.revature.dao.UserDao;
 import com.revature.dao.UserDaoImpl;
 import com.revature.model.User;
@@ -38,14 +41,16 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        System.out.println("this server is redirected");
-       String a =request.getParameter("username");
-       System.out.println(a);
-     //  System.out.println("fibalxcvsd"+username);
-       PrintWriter pw = response.getWriter();
-       response.setContentType("appllication/json");
-       response.setCharacterEncoding("UTF-8");
-       pw.write("success");
-       pw.close();
+       ObjectMapper mapper = new ObjectMapper();
+       User u = mapper.readValue(request.getInputStream(), User.class);
+		System.out.println(u);
+		
+		  PrintWriter pw = response.getWriter();
+		  response.setContentType("appllication/json");
+		  String s = mapper.writeValueAsString(u);
+		  response.setCharacterEncoding("UTF-8"); pw.write(s); pw.close();
+		  System.out.println();
+		  
       // if(request.getParameter("username").equalsIgnoreCase("Mona"))
        
     //   response.getWriter().write("Success Data");

@@ -23,24 +23,43 @@
 		<div id="formContent">
 			<!-- Tabs Titles -->
 			<%
-			/* if (request.getAttribute("error") != null) { */
 			if (session.getAttribute("error1") != null) {
 			%>
-
-			<%-- <div class="alert alert-danger" role="alert">
-				<div class="paragrapg"><%=session.getAttribute("error1")%></div>
-			</div>
- --%>
 			<div class="alert alert-warning alert-dismissible fade show">
 				<strong>Warning!</strong> Please enter a valid value in all the
 				required fields before proceeding.
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				
+				<button type="button" class="close" data-dismiss="alert alert-danger">&times;</button>
+
 			</div>
 			<%
-			  session.setAttribute("error1", null);   } else {
-			out.print("");
+			session.setAttribute("error1", null);
+			
 			}
+			if (session.getAttribute("Cache-Control") != null) {
+			%>
+			<div class="alert alert-warning alert-dismissible fade show">
+				<strong>Warning!</strong>
+				<%=session.getAttribute("Cache-Control")%>
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+
+			</div>
+			<%
+			session.setAttribute("Cache-Control", null);
+		
+			}
+			if (session.getAttribute("logoutsuccessmessage") != null) {
+				%>
+				<div class="alert alert-warning alert-dismissible fade show">
+					<strong>Success!</strong>
+					<%=session.getAttribute("logoutsuccessmessage")%>
+					<button type="button" class="close" data-dismiss="alert alert-success">&times;</button>
+
+				</div>
+				<%
+				session.setAttribute("logoutsuccessmessage", null);
+				
+				}
+			
 			%>
 			<!-- Icon -->
 			<div class="fadeIn first">
@@ -60,14 +79,13 @@
 
 			<!-- Remind Passowrd -->
 			<div id="formFooter">
-				<a class="underlineHover" href="#">Forgot
-					Password?</a>
+				<a class="underlineHover" href="#">Forgot Password?</a>
 			</div>
 
 		</div>
 	</div>
-    
-    <>
+
+
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
