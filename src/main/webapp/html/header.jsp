@@ -7,6 +7,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
+	href="css/common.css">
+<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -14,7 +16,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<script type="text/javascript" src="js/getReimbursementType.js"></script>
 
 </head>
 <body>
@@ -27,19 +29,19 @@
 	
 	
 	%>
-<h1>hello <%=username%></h1>
+
 	<%-- <div class="alert alert-danger" role="alert">
 				<div class="paragrapg"><%=session.getAttribute("error1")%></div>
 			</div>
  --%>
-	<div class="alert alert-warning alert-dismissible fade show">
+	<%-- <div class="alert alert-warning alert-dismissible fade show">
 		<strong>Warning!</strong>
 		<div class="paragrapg"><%=session.getAttribute("username")%></div>
 		<div class="paragrapg"><%=session.getAttribute("isManager")%></div>
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 
 	</div>
-	
+	 --%>
 
 
 	<nav class="navbar navbar-expand-md bg-primary navbar-dark">
@@ -56,7 +58,7 @@
 				%>
 				<li class="nav-item"><a class="nav-link" href="userprofile.jsp">Profile</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="employeereimbursement.jsp">ApplyReimubursement</a></li>
+					href="employeereimbursement.jsp" id="applyreimb" >ApplyReimubursement</a></li>
 				<%
 				}
 				%>
@@ -85,7 +87,7 @@
 		</div>
 	</nav>
 	<br />
-	
+	<h5 style="font-family: serif;margin-left: 10px;" class="card-text">Hello <%=username.toUpperCase()%> ,</h5>
 	<%
 	} else {
 	%>
