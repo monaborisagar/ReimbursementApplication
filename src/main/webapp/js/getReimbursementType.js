@@ -6,7 +6,7 @@
 
 
 
-document.addEventListener('DOMContentLoaded', function(event) {
+/*document.addEventListener('DOMContentLoaded', function(event) {
 	let xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
 			var size = Object.keys(success).length;
 			console.log(size);
 			//location.href="http://localhost:8081/ReimursementSystem/employeereimbursement.jsp";
-			if(document.getElementById("inputState") != null)
+			if(document.getElementById("inputState").length == 0 )
 			{
-			var select = document.getElementById("inputState");
+			let select = document.getElementById("inputState");
 			let entries = Object.entries(success);
 			let option2 = document.createElement('option');
 				option2.value = "null";
@@ -46,3 +46,4 @@ document.addEventListener('DOMContentLoaded', function(event) {
 	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.send();
 })
+*/

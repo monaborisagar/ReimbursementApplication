@@ -36,4 +36,22 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logoutpage</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <servlet-name>GetReimbursementTypes</servlet-name>
+    <servlet-class>com.revature.controller.GetReimbursementTypes</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetReimbursementTypes</servlet-name>
+    <url-pattern>/getReimbursementTypes</url-pattern>
+  </servlet-mapping> 
+   <servlet>
+    <description></description>
+    <servlet-name>EmployeeReimSubmit</servlet-name>
+    <servlet-class>com.revature.controller.EmployeeReimSubmit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmployeeReimSubmit</servlet-name>
+    <url-pattern>/EmployeeReimSubmit</url-pattern>
+  </servlet-mapping> 
 </web-app>

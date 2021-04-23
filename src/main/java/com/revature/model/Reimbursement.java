@@ -28,7 +28,7 @@ public class Reimbursement {
 	
 	public Reimbursement(BigDecimal reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
 			String reimbDescription, String reimbReciptURL, int reimbAuthor, int reimbResolver, int reimbStatusId,
-			int reimbTypeId, User user) {
+			int reimbTypeId) {
 		super();
 		this.reimbAmount = reimbAmount;
 		this.reimbSubmitted = reimbSubmitted;
@@ -39,7 +39,6 @@ public class Reimbursement {
 		this.reimbResolver = reimbResolver;
 		this.reimbStatusId = reimbStatusId;
 		this.reimbTypeId = reimbTypeId;
-		this.user = user;
 	}
 
 	public Reimbursement(int reimbId, BigDecimal reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,

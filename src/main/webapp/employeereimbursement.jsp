@@ -181,9 +181,35 @@
 			<p class="card-text">With supporting text below as a natural
 				lead-in to additional content.</p>
 			<a href="#" class="btn btn-primary">Go somewhere</a> -->
-			<form class="card-text">
-				<div class="form-group">
-					<div class="form-group">
+			<div class="alert alert-danger col-md-6" id="successmessasge" style="display: none">
+				<button type="button" class="close" data-dismiss="alert"><span style="color: gray;font-size: medium;margin-bottom: 10px;">x</span></button>
+				<span id="successfailureinner"> </span> 
+			</div>
+			<%
+				if (session.getAttribute("ReimDataSuccess") != null) {
+				%>
+				<div class="alert alert-success col-md-6" id="reimstoredata" >
+				<button type="button" class="close" data-dismiss="alert"><span style="color: gray;font-size: medium;margin-bottom: 10px;">x</span></button>
+				<span id="successmess"><%=session.getAttribute("ReimDataSuccess")%> </span> 
+			</div>
+				<%
+				session.setAttribute("ReimDataSuccess", null);}
+				%>
+				<%
+				if (session.getAttribute("ReimbDataSaveError") != null) {
+				%>
+				<div class="alert alert-danger col-md-6" id="reimbdatafail" >
+				<button type="button" class="close" data-dismiss="alert"><span style="color: gray;font-size: medium;margin-bottom: 10px;">x</span></button>
+				<span id="failuremessage"><%=session.getAttribute("ReimbDataSaveError")%> </span> 
+			</div>
+				<%
+				session.setAttribute("ReimbDataSaveError", null);}
+				%>
+			<form id="form" class="card-text" onsubmit="return validate();"enctype="multipart/form-data" method="post" action="EmployeeReimSubmit"
+				>
+				<!-- enctype="multipart/form-data" -->
+				<!-- <div class="form-group"> -->
+						<!-- method="post" action="EmployeeReimSubmit" -->
 						<!-- <label for="exampleInputEmail1">UserName</label> <input
 							type="text" class="form-control" id="profilefirstname"
 							aria-describedby="usernamehelp" placeholder="UserName">
@@ -200,20 +226,24 @@
 				</div> -->
 
 						<div class="form-group col-md-6">
-							<label for="exampleInputEmail1">Amount <span class="redstar">*</span></label> <input
-								type="number" class="form-control" id="reimb_user_amount"
+							<label for="exampleInputEmail1">Amount <span
+								class="redstar">*</span></label> <input type="number" 
+								class="form-control" name="amount" id="reimb_user_amount"
 								aria-describedby="amounthelp" placeholder="Amount" min="0"
-								max="100000" required="required"> <small id="amounthelp"
+								max="100000" step=".01" required="required"> <small id="amounthelp"
 								class="form-text text-muted"></small>
 						</div>
 
 						<div class="form-group col-md-6" id="roledropdown"
 							name="roledropdown">
-							<label for="inputState">Reimbursement Type <span class="redstar">*</span></label> <select
-								id="inputState" name="inputstate" name="select_reimbursement_type" class="form-control" required="required">
-								<!-- <option value="null" >Choose...</option>
-								<option value="2">Manager</option>
-								<option value="1">Employee</option> -->
+							<label for="inputState">Reimbursement Type <span
+								class="redstar">*</span></label> <select id="inputState"
+								name="inputstate" name="select_reimbursement_type"
+								class="form-control" required="required">
+								<option value="null" >Choose...</option>
+								<option value="1">Shopping</option>
+								<option value="2">Certification</option>
+								<option value="3">Migrate</option>
 
 							</select>
 						</div>
@@ -229,11 +259,15 @@
 								aria-describedby="descriptionhelp" placeholder="Description">
 							<small id="descriptionhelp" class="form-text text-muted"></small>
 						</div> -->
+						<input type="hidden" id="username" name="usernamepass"
+							value=" <%=session.getAttribute("username")%>">
+
 						<div class="form-group col-md-6">
-							<label for="exampleFormControlTextarea1">Description <span class="redstar">*</span></label>
+							<label for="exampleFormControlTextarea1">Description <span
+								class="redstar">*</span></label>
 							<textarea class="form-control" id="exampleFormControlTextarea1"
-								rows="3"></textarea>
-									<small id="descriptionhelp" class="form-text text-muted"></small>
+								name="description" rows="3"></textarea>
+							<small id="descriptionhelp" class="form-text text-muted"></small>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="exampleInputEmail1">Receipt Image</label> <br /> <img
@@ -241,54 +275,200 @@
 								class="form-text text-muted"></small>
 						</div>
 						<label class="form-label col-md-6" for="customFile">
-							Upload Receipt </label> <input type="file" class="form-group col-md-6"
-							id="customFile" />
+							Upload Receipt </label> <input type="file" name="file" value="Attach"
+							id="upload" name="upload" accept=".jpg,.png,.bmp"
+							class="form-group col-md-6" />
 
 
 
 						<div class="form-group form-check ">
 							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1" required="required"> <label class="form-check-label"
-								for="exampleCheck1">I am herefy confirm that information
-								added by me is correct.</label>
+								name="checkboxpolicy" id="exampleCheck1" required="required">
+							<label class="form-check-label" for="exampleCheck1">I am
+								hereBy confirm that information added by me is correct.</label>
 						</div>
-						<button type="submit" class="btn btn-primary" id="Accept" onclick="saveUserReimbData()">Accept</button>
-						<button type="submit" class="btn btn-primary" id="Reject">Reject</button>
+						<button type="submit" class="btn btn-primary" id="Accept">Accept</button>
+						<button type="button" class="btn btn-primary" id="Reject" onclick="reset()">Clear</button>
 			</form>
 
 		</div>
 	</div>
 
 </div>
-<!-- <script type="text/javascript">
-function saveUserReimbData()
+
+
+<script type="text/javascript">
+
+function reset()
 {
-let selectElement =  document.querySelector('#select1');
-                      
-console.log("to check this valuer"+selectElement.value);
-location.href="http://localhost:8081/ReimursementSystem/loginpage.jsp";
-	 
+	alert("inside resdet");
+	 document.getElementById("reimb_user_amount").value='';
+	 document.getElementById("inputState").selectedIndex = 1; //1 = option 2
+
+	 document.getElementById("exampleFormControlTextarea1").value='';
+	 document.getElementById("upload").value='';
+	 document.getElementById("exampleCheck1").value='';
 	
-	let xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if (xhttp.readyState == 4 && xhttp.status == 200) {
-			let success = JSON.parse(xhttp.responseText);
-			//	console.log('data is sent successfully');
-			console.log(success);
-			console.log(success.userName);
-			
-			//location.href = "http://localhost:8081/ReimursementSystem/loginpage.jsp?username="+success.userName;
+	}
+	
+	function validate() {
+		//seetting dropdown
+		console.log("inside");
+		let inputstate = document.getElementById("inputState");
+		let selectedReimDropdown = inputstate.value;
+		console.log("inde dropdown" + selectedReimDropdown);
+		if (selectedReimDropdown == "null") {
+		//	<div class="alert alert-success col-md-6" id="successmessasge">
+			let successmessasge = document.getElementById("successmessasge");
+			successmessasge.class = "alert alert-danger col-md-6";
+			successmessasge.style.display ='block';
+			let successfailurepopup = document.getElementById("successfailureinner");
+			successfailurepopup.innerHTML = "Reimbursement Type value should not be Blank. ";
+			//alert("dropdown value shou;d not be mu[[]]");
+			return false;
 		}
-	};
+
+		//for description
+		let description = document
+				.getElementById("exampleFormControlTextarea1").value;
+		if (description == "" || description == null) {
+			let successmessasge = document.getElementById("successmessasge");
+			successmessasge.class = "alert alert-danger col-md-6";
+			successmessasge.style.display ='block';
+			let successfailurepopup = document.getElementById("successfailureinner");
+			successfailurepopup.innerHTML = "Description should not be Blank.";
+			//alert("Please enter deswcription");
+			
+			return false;
+		}
+
+		//fileupload
+		let input_element = document.getElementById("upload");
+		let fileName = input_element.value;
+		console.log("this is my finlename"+fileName);
+		/* if(fineName =='')
+			{
+			successmessasge.class = "alert alert-danger col-md-6";
+			successmessasge.style.display ='block';
+			let successfailurepopup = document.getElementById("successfailureinner");
+			successfailurepopup.innerHTML = "Please upload file.It should not be blank.";
+			} */
+		var allowed_extensions = new Array("jpg", "png", "gif");
+		var file_extension = fileName.split('.').pop();
+		var flag = 0;
+		for (var i = 0; i < allowed_extensions.length; i++) {
+			if (allowed_extensions[i] == file_extension) {
+				flag = 1;
+				return;
+
+			}
+
+		}
+		if (flag != 1) {
+			let successmessasge = document.getElementById("successmessasge");
+			successmessasge.class = "alert alert-danger col-md-6";
+			successmessasge.style.display ='block';
+			let successfailurepopup = document.getElementById("successfailureinner");
+			successfailurepopup.innerHTML = "File Format must be jpg, png, gif.";
+			//alert("file format does not matrch");
+			return false;
+		}
+
+		return true;
+
+	}
+
+	/* var phnenumber = document.getElementById("phnenumber").value;
+	alert(phnenumber.length);
+	var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+	if (!(phoneno).test(phnenumber)) {
+		
 	
-	xhttp.open("POST", "http://localhost:8081/ReimursementSystem/EmployeeReimSubmit");
-	xhttp.setRequestHeader("Content-type", "application/json");
-	//xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	//xhttp.send('username='+username.value+'&password='+password.value); 
-	//xhttp.send("{username:'mona',password:'tina'}");
-	xhttp.send('{mona:"test,sona:"ttt"}');
+		alert("phnenumber pattern is not matched ");
+		return false;
+	}
 	
-}
-</script> -->
-<!-- <script type="text/javascript" src="js/getReimbursementType.js"></script> -->
+	 
+	    var dob =document.getElementById("date").value;
+	    alert("fdbdfb");
+	    var pattern = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
+	    alert(dob);
+	    
+	    if ( !pattern.test(dob)) {
+	    	
+	        alert("Invalid date of birth\n");
+	        return false;
+	    } */
+
+	/*  var valid=true;
+	 var fileid;
+	 var accept = document.getElementById("Accept");
+	 var reject = document.getElementById("Reject");
+	 function validate_fileupload(input_element)
+	 {
+	 console.log("comes inside of file");
+	 // var el = document.getElementById("feedback");
+	 fileid = input_element;
+	 let  fileName = input_element.value;
+	 var allowed_extensions = new Array("jpg","png","gif");
+	 var file_extension = fileName.split('.').pop(); 
+	 var flag=0;
+	 for(var i = 0; i < allowed_extensions.length; i++)
+	 {
+	 if(allowed_extensions[i]==file_extension)
+	 {
+	 //valid = true; // valid file extension
+	 // el.innerHTML = "Valid Format";
+	 //accept.disabled = false;
+	 flag=1;
+	 //reject.disabled=false; 
+	 return;
+	
+	 }
+	
+	 }
+	 if(flag=!=1)
+	 {
+	 valid = false;
+	 return false;
+	 }
+	 //  console.log("insidefv fvfefvfd reject file");
+	 // el.innerHTML="Invalid file";
+	 //accept.disabled = true;
+	 //       reject.disabled=true; 
+	 //valid = false;
+	 }
+	 function validationfordefault(){
+	 console.log("insde change");
+	 let inputstate = document.getElementById("inputState");
+	 let selectedReimDropdown = inputstate.value;
+	 if(selectedReimDropdown =="null" && inputstate.length ==0)
+	 {valid=false;
+	 return false;
+	 }
+	
+	
+	 /*  console.log(inputstate.value);
+	 valid=true; */
+
+	/*  function checkigDescriptionforblank()
+	 {
+	 let description = document.getElementById("exampleFormControlTextarea1");
+	 if(description.value == null)
+	 {
+	 valid = false;
+	 return false;
+	 }
+	
+	 }
+	 function valid_form()
+	 {
+	 validate_fileupload(input_element);
+	 validationfordefault();
+	 checkigDescriptionforblank();
+	 return valid;
+	 } */
+</script>
+
+<script type="text/javascript" src="js/getReimbursementType.js"></script>
 <%@ include file="html/footer.jsp"%>
