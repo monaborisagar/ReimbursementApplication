@@ -1,70 +1,17 @@
 
 <%@ include file="html/header.jsp"%>
 
-
+<input type="hidden" id="username" name="usernamepass"
+					value=" <%=session.getAttribute("username")%>" style="display: none">
 <section style="margin: 50px;">
 
 	<div class="card">
 		<div class="card-header">User Details(Reimbursement Pending)</div>
 		<div class="card-body">
-			<!-- <h5 class="card-title">Special title treatment</h5>
-				<p class="card-text">With supporting text below as a natural
-					lead-in to additional content.</p> -->
-			<table class="table table-striped" style="align-content: center;">
-				<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">UserName</th>
-						<th scope="col">Amount</th>
-						<th scope="col">Type Id</th>
-						<th scope="col">Description</th>
-						<th scope="col"></th>
-
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>Mark</td>
-						<td>6788</td>
-						<td>shopping</td>
-						<td> <textarea class="form-control rounded-0"
-									id="exampleFormControlTextarea2" rows="3" col='2'>his is for movie dfvjnjfdjk dfnvjnd this is for movie
-							dfvjnjfdjk dfnvjnd this is for movie dfvjnjfdjk dfnvjnd this is for movie
-							dfvjnjfdjk dfnvjnd this is for movie dfvjnjfdjk dfnvjnd</textarea></td>
-						<td><a href="#" class="btn btn-primary">View</a> <a href="#"
-							class="btn btn-primary">Accept</a> <a href="#"
-							class="btn btn-primary">Reject</a></td>
-					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td>Mark</td>
-						<td>6788</td>
-						<td>shopping</td>
-						<td>
-								<textarea class="form-control rounded-0"
-									id="exampleFormControlTextarea2" rows="3" col='2'>his is for movie dfvjnjfdjk dfnvjnd this is for movie
-							dfvjnjfdjk dfnvjnd this is for movie dfvjnjfdjk dfnvjnd this is for movie
-							dfvjnjfdjk dfnvjnd this is for movie dfvjnjfdjk dfnvjnd</textarea>
-						</td>
-						<td><a href="#" class="btn btn-primary">View</a> <a href="#"
-							class="btn btn-primary">Accept</a> <a href="#"
-							class="btn btn-primary">Reject</a></td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Mark</td>
-						<td>6788</td>
-						<td>shopping</td>
-						<td><textarea class="form-control rounded-0"
-									id="exampleFormControlTextarea2" rows="3" col='2'>his is for movie dfvjnjfdjk dfnvjnd this is for movie
-							d</textarea></td>
-						<td><a href="#" class="btn btn-primary">View</a> <a href="#"
-							class="btn btn-primary">Accept</a> <a href="#"
-							class="btn btn-primary">Accept</a></td>
-					</tr>
-				</tbody>
-			</table>
+		
+			 <section id="alluserdetails">
+							
+						</section>
 
 		</div>
 	</div>
@@ -134,5 +81,5 @@
 		</div>
 	</div>
 </section>
-
+<script type="text/javascript" src="js/getReimbursementDataAllUser.js"></script>
 <%@ include file="html/footer.jsp"%>

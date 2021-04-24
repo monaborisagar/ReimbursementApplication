@@ -98,11 +98,11 @@ public class UserDaoImpl  implements UserDao{
 	@Override
 	public int getUserIDByUsername(String usernamevalue) {
 		int userid =0;
-		System.out.println("username ia"+usernamevalue+".");
-		String sql = "SELECT USERID FROM USERS WHERE USERNAME='mona';";// only users
+		System.out.println("username ia."+usernamevalue+".");
+		String sql = "SELECT USERID FROM USERS WHERE USERNAME=?;";// only users
 		try (Connection con = ConnectionUtil.getConnection();
 				PreparedStatement ps = con.prepareStatement(sql);) {
-			//ps.setString(1, usernamevalue);
+			ps.setString(1, usernamevalue.trim());
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				userid = rs.getInt("userid");

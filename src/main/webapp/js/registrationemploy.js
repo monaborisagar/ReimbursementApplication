@@ -1,6 +1,10 @@
 /**
  * 
  */
+/**
+ * gfng
+ */
+ 
  var mona =10;
 console.log("this is message"+mona);
 
@@ -38,38 +42,38 @@ function getPoke1() {
 			//location.href = "http://localhost:8081/ReimursementSystem/loginpage.jsp?username="+success.userName;
 		}
 	};
-	
-	xhttp.open("POST", "http://localhost:8081/ReimursementSystem/employeeregister");
-	xhttp.setRequestHeader("Content-type", "application/json");
-	//xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	//xhttp.send('username='+username.value+'&password='+password.value); 
-	//xhttp.send("{username:'mona',password:'tina'}");
-	xhttp.send(JSON.stringify(formobj));
-	
-	
-	
-	
-	
-	
-	
-	//xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	//xhttp.send('username=Henry&password=Ford');
-	
-	//please write inside 
-	//System.out.println("call comes gere");
-		 //String dv= (String) request.getParameter("username");
-		// System.out.println(dv);
-	
-	
-	/*xhttp.open("GET", "http://localhost:8081/ReimursementSystem/employeeregister?username=Henry&password=Ford", true);
-	//xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	//xhttp.send(); // and write code inside doGet method 
-	//System.out.println("call comes gere");
-		 //String dv= (String) request.getParameter("username");
-		// System.out.println(dv);
+		
+		xhttp.open("POST", "http://localhost:8081/ReimursementSystem/employeeregister");
+		xhttp.setRequestHeader("Content-type", "application/json");
+		//xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		//xhttp.send('username='+username.value+'&password='+password.value); 
+		//xhttp.send("{username:'mona',password:'tina'}");
+		xhttp.send(JSON.stringify(formobj));
 		
 		
-	*/
+		
+		
+		
+		
+		
+		//xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		//xhttp.send('username=Henry&password=Ford');
+		
+		//please write inside 
+		//System.out.println("call comes gere");
+			 //String dv= (String) request.getParameter("username");
+			// System.out.println(dv);
+		
+		
+		/*xhttp.open("GET", "http://localhost:8081/ReimursementSystem/employeeregister?username=Henry&password=Ford", true);
+		//xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		//xhttp.send(); // and write code inside doGet method 
+		//System.out.println("call comes gere");
+			 //String dv= (String) request.getParameter("username");
+			// System.out.println(dv);
+			
+			
+		*/
 	//xhttp.send('username=Henry&password=Ford'); this worked
 	//xhttp.send(JSON.stringify(formobj)); //this is not worked
 	//xhttp.send("{username=mona,password=mona}"); // this is not worked

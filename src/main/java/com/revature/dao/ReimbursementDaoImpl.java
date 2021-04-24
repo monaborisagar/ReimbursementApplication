@@ -5,8 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
 
+import com.revature.model.ReimbJoint;
 import com.revature.model.Reimbursement;
 import com.revature.util.ConnectionUtil;
 
@@ -65,5 +68,111 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			e.printStackTrace();
 		}
 		return reimbSubmitted;
+	}
+	
+	
+	@Override
+	public List<Reimbursement> getReimbursementPendingForUser(int userid,int statusid) {
+		List<Reimbursement> eList = new ArrayList<Reimbursement>();
+		String sql = "SELECT * FROM reimbursement where statusid =? and reimbauthor =? ;";// only users
+		try (Connection con = ConnectionUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+		     
+			ps.setInt(1, statusid);
+			ps.setInt(2, userid);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Reimbursement reimb = new Reimbursement();
+				reimb.setReimbId(rs.getInt("reimbid"));
+				reimb.setReimbAmount(rs.getBigDecimal("reimbamount"));
+				reimb.setReimbSubmitted(rs.getTimestamp("reimbsubmitted"));
+				reimb.setReimbResolved(rs.getTimestamp("reimbresolved"));
+				reimb.setReimbDescription(rs.getString("reimbdescription"));
+				reimb.setReimbReciptURL(rs.getString("reimbrecipturl"));
+				reimb.setReimbAuthor(rs.getInt("reimbauthor"));
+				reimb.setReimbResolver(rs.getInt("reimbresolver"));
+				reimb.setReimbStatusId(rs.getInt("statusid"));
+				reimb.setReimbTypeId(rs.getInt("typeid"));
+				
+				eList.add(reimb);
+			}
+		} catch (SQLException e) {
+			System.out.println("gbgfb");
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return eList;
+		
+		
+	}
+	
+	@Override
+	public List<ReimbJoint> getReimbursementDifferentStatusUserwise(int userid,int statusid) {
+		List<ReimbJoint> eList = new ArrayList<>();
+		String sql = "select reimbid,reimbamount ,reimbsubmitted ,reimbresolved ,reimbdescription,typename,statusname from reimbursement r inner join users u on r.reimbauthor =u.userid inner join reimbursement_type rt on rt.typeid =r.typeid  inner join reimbursement_status rs on rs.statusid =r.statusid where userid=? and r.statusid=?;";// only users
+		try (Connection con = ConnectionUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+			ps.setInt(1, userid); 
+			ps.setInt(2, statusid);
+			
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				ReimbJoint rjoint = new ReimbJoint();
+				rjoint.setReimbId(rs.getInt("reimbid"));
+				rjoint.setReimbAmount(rs.getBigDecimal("reimbamount"));
+				rjoint.setReimbSubmitted(rs.getTimestamp("reimbsubmitted"));
+				System.out.println("fvfdvbfd"+rjoint.getReimbSubmitted());
+				rjoint.setReimbResolved(rs.getTimestamp("reimbresolved"));
+				rjoint.setReimbDescription(rs.getString("reimbdescription"));
+				rjoint.setTypeName(rs.getString("typename"));
+				rjoint.setStatusName(rs.getString("statusname"));
+				
+				
+				
+				eList.add(rjoint);
+			}
+		} catch (SQLException e) {
+			System.out.println("gbgfb");
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return eList;
+		
+		
+	}
+	
+	@Override
+	public List<ReimbJoint> getReimbursementAllUsers() {
+		List<ReimbJoint> eList = new ArrayList<>();
+		String sql = "select u.username ,reimbid,reimbamount ,reimbsubmitted ,reimbresolved ,reimbdescription,typename,statusname from reimbursement r inner join users u on r.reimbauthor =u.userid inner join reimbursement_type rt on rt.typeid =r.typeid  inner join reimbursement_status rs on rs.statusid =r.statusid  order by username ;";// only users
+		try (Connection con = ConnectionUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+		     
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				ReimbJoint rjoint = new ReimbJoint();
+				rjoint.setReimbId(rs.getInt("reimbid"));
+				rjoint.setUsername(rs.getString("username"));
+				rjoint.setReimbAmount(rs.getBigDecimal("reimbamount"));
+				rjoint.setReimbSubmitted(rs.getTimestamp("reimbsubmitted"));
+				System.out.println("fvfdvbfd"+rjoint.getReimbSubmitted());
+				rjoint.setReimbResolved(rs.getTimestamp("reimbresolved"));
+				rjoint.setReimbDescription(rs.getString("reimbdescription"));
+				rjoint.setTypeName(rs.getString("typename"));
+				rjoint.setStatusName(rs.getString("statusname"));
+				
+				eList.add(rjoint);
+			}
+		} catch (SQLException e) {
+			System.out.println("gbgfb");
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return eList;
+		
+		
 	}
 }

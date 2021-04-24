@@ -44,8 +44,8 @@
   <servlet-mapping>
     <servlet-name>GetReimbursementTypes</servlet-name>
     <url-pattern>/getReimbursementTypes</url-pattern>
-  </servlet-mapping> 
-   <servlet>
+  </servlet-mapping>
+  <servlet>
     <description></description>
     <servlet-name>EmployeeReimSubmit</servlet-name>
     <servlet-class>com.revature.controller.EmployeeReimSubmit</servlet-class>
@@ -53,5 +53,25 @@
   <servlet-mapping>
     <servlet-name>EmployeeReimSubmit</servlet-name>
     <url-pattern>/EmployeeReimSubmit</url-pattern>
-  </servlet-mapping> 
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetReimbursementPendingStates</display-name>
+    <servlet-name>GetReimbursementPendingStates</servlet-name>
+    <servlet-class>com.revature.controller.GetReimbursementPendingStates</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetReimbursementPendingStates</servlet-name>
+    <url-pattern>/getReimbursementPendingStates</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetReimbursementUserData</display-name>
+    <servlet-name>GetReimbursementUserData</servlet-name>
+    <servlet-class>com.revature.controller.GetReimbursementUserData</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetReimbursementUserData</servlet-name>
+    <url-pattern>/getReimbursementUserData</url-pattern>
+  </servlet-mapping>
 </web-app>

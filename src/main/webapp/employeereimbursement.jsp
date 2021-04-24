@@ -14,12 +14,12 @@
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item waves-effect waves-light"><a
 						class="nav-link" id="home-tab" data-toggle="tab" href="#home"
-						role="tab" aria-controls="home" aria-selected="false">Pending
-							Reimbursement</a></li>
+						role="tab" aria-controls="home" aria-selected="false" onclick="displayPending()">Pending
+							Requests</a></li>
 					<li class="nav-item waves-effect waves-light"><a
 						class="nav-link" id="profile-tab" data-toggle="tab"
 						href="#profile" role="tab" aria-controls="profile"
-						aria-selected="false">Approved Reimbursement</a></li>
+						aria-selected="false" onclick="displayApproved()">Approved Requests</a></li>
 					<li class="nav-item waves-effect waves-light"><a
 						class="nav-link active" id="contact-tab" data-toggle="tab"
 						href="#contact" role="tab" aria-controls="contact"
@@ -28,70 +28,19 @@
 				<div class="tab-content" id="myTabContent">
 					<div class="tab-pane fade" id="home" role="tabpanel"
 						aria-labelledby="home-tab">
-						<br /> <br />
+						<!-- <br /> <br /> --><br/>
 						<section id="pendingrequest">
-							<table class="table table-striped" style="align-content: center;">
-								<thead>
-									<tr>
-										<th scope="col">#</th>
-										<th scope="col">UserName</th>
-										<th scope="col">Amount</th>
-										<th scope="col">Type Id</th>
-										<th scope="col">Description</th>
-										<th scope="col"></th>
-
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>Mark</td>
-										<td>6788</td>
-										<td>shopping</td>
-										<td><textarea class="form-control rounded-0"
-												id="exampleFormControlTextarea2" rows="3" col='2'>his is for movie dfvjnjfdjk dfnvjnd this is for movie
-							dfvjnjfdjk dfnvjnd this is for movie dfvjnjfdjk dfnvjnd this is for movie
-							dfvjnjfdjk dfnvjnd this is for movie dfvjnjfdjk dfnvjnd</textarea></td>
-										<td><a href="#" class="btn btn-primary">View</a> <a
-											href="#" class="btn btn-primary">Accept</a> <a href="#"
-											class="btn btn-primary">Reject</a></td>
-									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td>Mark</td>
-										<td>6788</td>
-										<td>shopping</td>
-										<td><textarea class="form-control rounded-0"
-												id="exampleFormControlTextarea2" rows="3" col='2'>his is for movie dfvjnjfdjk dfnvjnd this is for movie
-							dfvjnjfdjk dfnvjnd this is for movie dfvjnjfdjk dfnvjnd this is for movie
-							dfvjnjfdjk dfnvjnd this is for movie dfvjnjfdjk dfnvjnd</textarea></td>
-										<td><a href="#" class="btn btn-primary">View</a> <a
-											href="#" class="btn btn-primary">Accept</a> <a href="#"
-											class="btn btn-primary">Reject</a></td>
-									</tr>
-									<tr>
-										<th scope="row">3</th>
-										<td>Mark</td>
-										<td>6788</td>
-										<td>shopping</td>
-										<td><textarea class="form-control rounded-0"
-												id="exampleFormControlTextarea2" rows="3" col='2'>his is for movie dfvjnjfdjk dfnvjnd this is for movie
-							d</textarea></td>
-										<td><a href="#" class="btn btn-primary">View</a> <a
-											href="#" class="btn btn-primary">Accept</a> <a href="#"
-											class="btn btn-primary">Accept</a></td>
-									</tr>
-								</tbody>
-							</table>
+							
 						</section>
 
-
+                   
 
 					</div>
 					<div class="tab-pane fade" id="profile" role="tabpanel"
 						aria-labelledby="profile-tab">
-						<section id="pendingrequest">
-							<br /> <br />
+						<br/>
+						<section id="approvedrequest">
+							<!-- <br /> <br />
 							<table class="table table-striped" style="align-content: center;">
 								<thead>
 									<tr>
@@ -145,9 +94,9 @@
 									</tr>
 								</tbody>
 							</table>
-						</section>
-
-
+						
+ -->
+</section>
 
 					</div>
 					<div class="tab-pane fade active show" id="contact" role="tabpanel"
