@@ -181,36 +181,48 @@
 			<p class="card-text">With supporting text below as a natural
 				lead-in to additional content.</p>
 			<a href="#" class="btn btn-primary">Go somewhere</a> -->
-			<div class="alert alert-danger col-md-6" id="successmessasge" style="display: none">
-				<button type="button" class="close" data-dismiss="alert"><span style="color: gray;font-size: medium;margin-bottom: 10px;">x</span></button>
-				<span id="successfailureinner"> </span> 
+			<div class="alert alert-danger col-md-6" id="successmessasge"
+				style="display: none">
+				<button type="button" class="close" data-dismiss="alert">
+					<span style="color: gray; font-size: medium; margin-bottom: 10px;">x</span>
+				</button>
+				<span id="successfailureinner"> </span>
 			</div>
 			<%
-				if (session.getAttribute("ReimDataSuccess") != null) {
-				%>
-				<div class="alert alert-success col-md-6" id="reimstoredata" >
-				<button type="button" class="close" data-dismiss="alert"><span style="color: gray;font-size: medium;margin-bottom: 10px;">x</span></button>
-				<span id="successmess"><%=session.getAttribute("ReimDataSuccess")%> </span> 
+			if (session.getAttribute("ReimDataSuccess") != null) {
+			%>
+			<div class="alert alert-success col-md-6" id="reimstoredata">
+				<button type="button" class="close" data-dismiss="alert">
+					<span style="color: gray; font-size: medium; margin-bottom: 10px;">x</span>
+				</button>
+				<span id="successmess"><%=session.getAttribute("ReimDataSuccess")%>
+				</span>
 			</div>
-				<%
-				session.setAttribute("ReimDataSuccess", null);}
-				%>
-				<%
-				if (session.getAttribute("ReimbDataSaveError") != null) {
-				%>
-				<div class="alert alert-danger col-md-6" id="reimbdatafail" >
-				<button type="button" class="close" data-dismiss="alert"><span style="color: gray;font-size: medium;margin-bottom: 10px;">x</span></button>
-				<span id="failuremessage"><%=session.getAttribute("ReimbDataSaveError")%> </span> 
+			<%
+			session.setAttribute("ReimDataSuccess", null);
+			}
+			%>
+			<%
+			if (session.getAttribute("ReimbDataSaveError") != null) {
+			%>
+			<div class="alert alert-danger col-md-6" id="reimbdatafail">
+				<button type="button" class="close" data-dismiss="alert">
+					<span style="color: gray; font-size: medium; margin-bottom: 10px;">x</span>
+				</button>
+				<span id="failuremessage"><%=session.getAttribute("ReimbDataSaveError")%>
+				</span>
 			</div>
-				<%
-				session.setAttribute("ReimbDataSaveError", null);}
-				%>
-			<form id="form" class="card-text" onsubmit="return validate();"enctype="multipart/form-data" method="post" action="EmployeeReimSubmit"
-				>
+			<%
+			session.setAttribute("ReimbDataSaveError", null);
+			}
+			%>
+			<form id="form" class="card-text" onsubmit="return validate();"
+				enctype="multipart/form-data" method="post"
+				action="EmployeeReimSubmit">
 				<!-- enctype="multipart/form-data" -->
 				<!-- <div class="form-group"> -->
-						<!-- method="post" action="EmployeeReimSubmit" -->
-						<!-- <label for="exampleInputEmail1">UserName</label> <input
+				<!-- method="post" action="EmployeeReimSubmit" -->
+				<!-- <label for="exampleInputEmail1">UserName</label> <input
 							type="text" class="form-control" id="profilefirstname"
 							aria-describedby="usernamehelp" placeholder="UserName">
 						<div class="usernamehelp">
@@ -225,70 +237,73 @@
 						share your email with anyone else.</small>
 				</div> -->
 
-						<div class="form-group col-md-6">
-							<label for="exampleInputEmail1">Amount <span
-								class="redstar">*</span></label> <input type="number" 
-								class="form-control" name="amount" id="reimb_user_amount"
-								aria-describedby="amounthelp" placeholder="Amount" min="0"
-								max="100000" step=".01" required="required"> <small id="amounthelp"
-								class="form-text text-muted"></small>
-						</div>
+				<div class="form-group col-md-6">
+					<label for="exampleInputEmail1">Amount <span
+						class="redstar">*</span></label> <input type="number" class="form-control"
+						name="amount" id="reimb_user_amount" aria-describedby="amounthelp"
+						placeholder="Amount" min="0" max="100000" step=".01"
+						required="required"> <small id="amounthelp"
+						class="form-text text-muted"></small>
+				</div>
 
-						<div class="form-group col-md-6" id="roledropdown"
-							name="roledropdown">
-							<label for="inputState">Reimbursement Type <span
-								class="redstar">*</span></label> <select id="inputState"
-								name="inputstate" name="select_reimbursement_type"
-								class="form-control" required="required">
-								<option value="null" >Choose...</option>
-								<option value="1">Shopping</option>
-								<option value="2">Certification</option>
-								<option value="3">Migrate</option>
+				<div class="form-group col-md-6" id="roledropdown"
+					name="roledropdown">
+					<label for="inputState">Reimbursement Type <span
+						class="redstar">*</span></label> <select id="inputState" name="inputstate"
+						name="select_reimbursement_type" class="form-control"
+						required="required">
+						<option value="null">Choose...</option>
+						<option value="1">Shopping</option>
+						<option value="2">Certification</option>
+						<option value="3">Migrate</option>
 
-							</select>
-						</div>
-						<!-- <div class="form-group">
+					</select>
+				</div>
+				<!-- <div class="form-group">
 					<label for="exampleInputEmail1">Submitted Date</label> <input
 						type="text" class="form-control" id="date"
 						aria-describedby="datehelp" placeholder="Submiiteddate"> <small
 						id="datehelp" class="form-text text-muted"></small>
 				</div> -->
-						<!-- <div class="form-group col-md-6">
+				<!-- <div class="form-group col-md-6">
 							<label for="exampleInputEmail1">Description</label> <input
 								type="text" class="form-control" id="description"
 								aria-describedby="descriptionhelp" placeholder="Description">
 							<small id="descriptionhelp" class="form-text text-muted"></small>
 						</div> -->
-						<input type="hidden" id="username" name="usernamepass"
-							value=" <%=session.getAttribute("username")%>">
+				<input type="hidden" id="username" name="usernamepass"
+					value=" <%=session.getAttribute("username")%>">
 
-						<div class="form-group col-md-6">
-							<label for="exampleFormControlTextarea1">Description <span
-								class="redstar">*</span></label>
-							<textarea class="form-control" id="exampleFormControlTextarea1"
-								name="description" rows="3"></textarea>
-							<small id="descriptionhelp" class="form-text text-muted"></small>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="exampleInputEmail1">Receipt Image</label> <br /> <img
-								alt="no image now" src="#"> <small id="descriptionhelp"
-								class="form-text text-muted"></small>
-						</div>
-						<label class="form-label col-md-6" for="customFile">
-							Upload Receipt </label> <input type="file" name="file" value="Attach"
-							id="upload" name="upload" accept=".jpg,.png,.bmp"
-							class="form-group col-md-6" />
+				<div class="form-group col-md-6">
+					<label for="exampleFormControlTextarea1">Description <span
+						class="redstar">*</span></label>
+					<textarea class="form-control" id="exampleFormControlTextarea1"
+						name="description" rows="3"></textarea>
+					<small id="descriptionhelp" class="form-text text-muted"></small>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="exampleInputEmail1">Receipt Image</label> <br /> <img
+						alt="no image now" src="#" id="output"> <small
+						id="descriptionhelp" class="form-text text-muted"></small>
+				</div>
+				<div>
+					<label class="form-label col-md-6" for="customFile"> Upload
+						Receipt </label> <input type="file" name="file" value="Attach"
+						id="upload" name="upload"
+						accept=".jpg,.png,.bmp" class="form-group col-md-6">
 
+				</div>
 
-
-						<div class="form-group form-check ">
-							<input type="checkbox" class="form-check-input"
-								name="checkboxpolicy" id="exampleCheck1" required="required">
-							<label class="form-check-label" for="exampleCheck1">I am
-								hereBy confirm that information added by me is correct.</label>
-						</div>
-						<button type="submit" class="btn btn-primary" id="Accept">Accept</button>
-						<button type="button" class="btn btn-primary" id="Reject" onclick="reset()">Clear</button>
+				<div class="form-group form-check ">
+					<input type="checkbox" class="form-check-input"
+						name="checkboxpolicy" id="exampleCheck1" required="required">
+					<label class="form-check-label" for="exampleCheck1">label</label>
+					<!-- I am hereBy confirm that information added by me is correct. --> 
+						
+				</div>
+				<button type="submit" class="btn btn-primary" id="Accept">Accept</button>
+				<button type="button" class="btn btn-primary" id="Reject"
+					onclick="reset()">Clear</button>
 			</form>
 
 		</div>
@@ -298,7 +313,16 @@
 
 
 <script type="text/javascript">
-
+/* document.getElementById('upload').addEventListener('change', (e)=>{
+	  const file = e.target.files[0];
+	    const reader = new FileReader();
+	    reader.onloadend = () => {
+	      const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
+	      localStorage.setItem('wallpaper', base64String);
+	      document.body.style.background = `url(data:image/jpg;base64,${base64String})`;
+	    };
+	    reader.readAsDataURL(file);
+	}) */
 function reset()
 {
 	alert("inside resdet");
@@ -309,7 +333,7 @@ function reset()
 	 document.getElementById("upload").value='';
 	 document.getElementById("exampleCheck1").value='';
 	
-	}
+};
 	
 	function validate() {
 		//seetting dropdown

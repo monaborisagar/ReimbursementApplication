@@ -29,9 +29,11 @@ import com.revature.model.Reimbursement;
 		maxFileSize = 1024 * 1024 * 10, // 10MB
 		maxRequestSize = 1024 * 1024 * 50) // 50MB
 public class EmployeeReimSubmit extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	public static final String SAVE_DIRECTORY = "images";
 	String filePath="";
+	private static long fileSerialNumber =0;
    
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -91,12 +93,15 @@ public class EmployeeReimSubmit extends HttpServlet {
 			if (!fileSaveDir.exists()) {
 				fileSaveDir.mkdir();
 			}
-
+           
 			// Part list (multi files).
 			for (Part part : request.getParts()) {
+				System.out.println("thisi s part"+part);
 				String fileName = extractFileName(part);
+				System.out.println("thisi s file name"+fileName);
 				if (fileName != null && fileName.length() > 0) {
 					 filePath = fullSavePath + "/" + fileName;
+				//	filePath = fullSavePath + "/" + "FileUniqueName"+fileSerialNumber;
 					System.out.println("Write attachment to file: " + filePath);
 					// Write to file
 					part.write(filePath);
