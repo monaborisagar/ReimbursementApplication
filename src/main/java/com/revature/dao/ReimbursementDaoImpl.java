@@ -147,7 +147,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	@Override
 	public List<ReimbJoint> getReimbursementAllUsers() {
 		List<ReimbJoint> eList = new ArrayList<>();
-		String sql = "select u.username ,reimbid,reimbamount ,reimbsubmitted ,reimbresolved ,reimbdescription,typename,statusname from reimbursement r inner join users u on r.reimbauthor =u.userid inner join reimbursement_type rt on rt.typeid =r.typeid  inner join reimbursement_status rs on rs.statusid =r.statusid  order by username ;";// only users
+		String sql = "select u.username ,reimbid,reimbamount ,reimbsubmitted ,reimbrecipturl,reimbresolved ,reimbdescription,typename,statusname from reimbursement r inner join users u on r.reimbauthor =u.userid inner join reimbursement_type rt on rt.typeid =r.typeid  inner join reimbursement_status rs on rs.statusid =r.statusid  order by username ;";// only users
 		try (Connection con = ConnectionUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
 		     
 			ResultSet rs = ps.executeQuery();
@@ -157,6 +157,10 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				rjoint.setUsername(rs.getString("username"));
 				rjoint.setReimbAmount(rs.getBigDecimal("reimbamount"));
 				rjoint.setReimbSubmitted(rs.getTimestamp("reimbsubmitted"));
+				String filePath =rs.getString("reimbrecipturl");
+			     filePath = filePath.substring(filePath.lastIndexOf("/") + 1);
+			     System.out.println(filePath);
+				rjoint.setReimbrecipturl(filePath);
 				System.out.println("fvfdvbfd"+rjoint.getReimbSubmitted());
 				rjoint.setReimbResolved(rs.getTimestamp("reimbresolved"));
 				rjoint.setReimbDescription(rs.getString("reimbdescription"));
@@ -214,6 +218,29 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public int getMaxReimbId() {
+		int maxReimbId=0;
+		
+		String sql = "select reimbid from reimbursement order by reimbid desc limit 1;";
+		try (Connection con = ConnectionUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				 maxReimbId = rs.getInt("reimbid");
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return maxReimbId;
+	}
+	
+	
+	
 
 	/*
 	 * @Override public int deleteUserReimbRecord(int reimbid) { int reimbidreturn =

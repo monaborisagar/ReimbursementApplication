@@ -42,7 +42,7 @@ public class GetReimbursementUserData extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		String s = mapper.writeValueAsString(reimbList);
 		System.out.println(s);
-		response.setCharacterEncoding("UTF-8");
+		//response.setCharacterEncoding("UTF-8");
 		pw.write(s);
 		pw.close();
 	}

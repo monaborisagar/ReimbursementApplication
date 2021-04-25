@@ -15,5 +15,6 @@ public interface ReimbursementDao {
 	List<ReimbJoint> getReimbursementAllUsers();
 	int deleteUserReimbRecord(int reimbid);
 	int updateReimbStatuswithReimid(String status, int reimbid);
+	int getMaxReimbId();
 
 }

@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.ZonedDateTime;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,6 +35,7 @@ public class EmployeeReimSubmit extends HttpServlet {
 	public static final String SAVE_DIRECTORY = "images";
 	String filePath="";
 	private static long fileSerialNumber =0;
+	Random rand = new Random();
    
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -100,9 +102,11 @@ public class EmployeeReimSubmit extends HttpServlet {
 				String fileName = extractFileName(part);
 				System.out.println("thisi s file name"+fileName);
 				if (fileName != null && fileName.length() > 0) {
-					 filePath = fullSavePath + "/" + fileName;
+					int rando = rand.nextInt(1000);
+					 filePath = fullSavePath + "/"+rando+"_"+fileName;
+					 
 				//	filePath = fullSavePath + "/" + "FileUniqueName"+fileSerialNumber;
-					System.out.println("Write attachment to file: " + filePath);
+					System.out.println("===========================Write attachment to file: " + filePath);
 					// Write to file
 					part.write(filePath);
 				}
@@ -128,7 +132,8 @@ public class EmployeeReimSubmit extends HttpServlet {
 			int status=reimbdao.createReimbursement(reimb);
 			if(status==1)System.out.println("data in reimb is saved successfully");
 			else throw new Exception("data in reimb is not saved successfully");
-			request.getSession().setAttribute("ReimDataSuccess", "Reimbursement Data is saved successfully.But it is Pending state, Please wait to be approved by authority.");
+			
+			request.getSession().setAttribute("ReimDataSuccess", "Your Reimbursement Request no:"+reimbdao.getMaxReimbId()+" is saved successfully.But it is Pending state, Please wait to be approved by authority.");
 			response.sendRedirect("employeereimbursement.jsp");
 			// Upload successfully!.
 			//request.getSession().setAttribute("uploadSuccessMessage", "")
