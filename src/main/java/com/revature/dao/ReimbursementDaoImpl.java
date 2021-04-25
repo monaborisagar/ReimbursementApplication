@@ -14,6 +14,7 @@ import com.revature.model.Reimbursement;
 import com.revature.util.ConnectionUtil;
 
 
+
 public class ReimbursementDaoImpl implements ReimbursementDao {
 
 	@Override
@@ -175,4 +176,54 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		
 		
 	}
+	@Override
+	public int updateReimbStatuswithReimid(String status,int reimbid) {
+		int rowApproved = 0;
+		String sql;
+		System.out.println("status is."+status+".");
+		if(status.equalsIgnoreCase("approve"))
+		{
+			  sql = "update reimbursement set statusid =2 where reimbid =?;";
+			  System.out.println("fdvfdv inside ");
+		}
+		  else if(status.equalsIgnoreCase("reject"))	
+			 sql = "update reimbursement set statusid =3 where reimbid =?;";
+		else if(status.equalsIgnoreCase("delete"))
+			sql = "DELETE FROM reimbursement where reimbid =?";
+		else
+		{
+			System.out.println("no case matched");
+			 return rowApproved;
+			 
+		}
+		 
+			try (Connection con = ConnectionUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+				ps.setInt(1, reimbid);
+				rowApproved =ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return rowApproved;
+	}
+
+
+	@Override
+	public int deleteUserReimbRecord(int reimbid) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/*
+	 * @Override public int deleteUserReimbRecord(int reimbid) { int reimbidreturn =
+	 * 0; String sql = "DELETE FROM reimbursement where reimbid =?;"; try
+	 * (Connection con = ConnectionUtil.getConnection(); PreparedStatement ps =
+	 * con.prepareStatement(sql);) { ps.setInt(1, reimbid); reimbidreturn
+	 * =ps.executeUpdate(); } catch (SQLException e) {
+	 * 
+	 * e.printStackTrace(); } catch (Exception e) {
+	 * 
+	 * e.printStackTrace(); } return reimbidreturn; }
+	 */
 }

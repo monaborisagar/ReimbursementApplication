@@ -74,4 +74,14 @@
     <servlet-name>GetReimbursementUserData</servlet-name>
     <url-pattern>/getReimbursementUserData</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateReimbursementState</display-name>
+    <servlet-name>UpdateReimbursementState</servlet-name>
+    <servlet-class>com.revature.controller.UpdateReimbursementState</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateReimbursementState</servlet-name>
+    <url-pattern>/updateReimbursementState</url-pattern>
+  </servlet-mapping>
 </web-app>

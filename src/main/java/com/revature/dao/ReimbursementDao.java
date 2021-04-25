@@ -13,5 +13,7 @@ public interface ReimbursementDao {
 	List<Reimbursement> getReimbursementPendingForUser(int userid, int statusid);
 	List<ReimbJoint> getReimbursementDifferentStatusUserwise(int userid, int statusid);
 	List<ReimbJoint> getReimbursementAllUsers();
+	int deleteUserReimbRecord(int reimbid);
+	int updateReimbStatuswithReimid(String status, int reimbid);
 
 }

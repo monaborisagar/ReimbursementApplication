@@ -3,13 +3,14 @@
 
 <input type="hidden" id="username" name="usernamepass"
 					value=" <%=session.getAttribute("username")%>" style="display: none">
-<section style="margin: 50px;">
-
-	<div class="card">
+<section style="margin: 50px;" >
+   
+			<div id="updatesuic"></div>
+	<div class="card" >
 		<div class="card-header">User Details(Reimbursement Pending)</div>
 		<div class="card-body">
 		
-			 <section id="alluserdetails">
+			 <section id="alluserdetails" style="max-height: 500px;min-height: 500px;overflow-y: scroll;">
 							
 						</section>
 
