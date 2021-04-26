@@ -84,4 +84,14 @@
     <servlet-name>UpdateReimbursementState</servlet-name>
     <url-pattern>/updateReimbursementState</url-pattern>
   </servlet-mapping>
-</web-app>                  
+  <servlet>
+    <description></description>
+    <display-name>CreateEmployeeFromManager</display-name>
+    <servlet-name>CreateEmployeeFromManager</servlet-name>
+    <servlet-class>com.revature.controller.CreateEmployeeFromManager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateEmployeeFromManager</servlet-name>
+    <url-pattern>/CreateEmployeeFromManager</url-pattern>
+  </servlet-mapping>
+</web-app>

@@ -6,7 +6,7 @@
 <section  style="margin: 50px;" >
 <div id="alertforoperation"></div>
 <div class="card">
-	<div class="card-header">User Details(Reimbursement Pending)</div>
+	<div class="card-header">Reimbursement Permission</div>
 	<div class="card-body">
 		<div class="container " id="container"></div>
 	</div>

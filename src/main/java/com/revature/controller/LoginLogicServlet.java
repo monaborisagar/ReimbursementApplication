@@ -19,7 +19,7 @@ import com.revature.util.SessionHelper;
 public class LoginLogicServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static UserDao userdao;
-       
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
