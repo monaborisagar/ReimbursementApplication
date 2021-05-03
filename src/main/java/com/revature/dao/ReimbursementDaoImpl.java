@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import com.revature.model.ReimbJoint;
 import com.revature.model.Reimbursement;
@@ -145,14 +147,16 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	}
 	
 	@Override
-	public List<ReimbJoint> getReimbursementAllUsers() {
-		List<ReimbJoint> eList = new ArrayList<>();
+	public Set<ReimbJoint> getReimbursementAllUsers() {
+		//List<ReimbJoint> eList = new ArrayList<>();
+		Set<ReimbJoint> eList = new TreeSet<>();
 		String sql = "select u.username ,reimbid,reimbamount ,reimbsubmitted ,reimbrecipturl,reimbresolved ,reimbdescription,typename,statusname from reimbursement r inner join users u on r.reimbauthor =u.userid inner join reimbursement_type rt on rt.typeid =r.typeid  inner join reimbursement_status rs on rs.statusid =r.statusid  order by username ;";// only users
 		try (Connection con = ConnectionUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
 		     
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				ReimbJoint rjoint = new ReimbJoint();
+				
 				rjoint.setReimbId(rs.getInt("reimbid"));
 				rjoint.setUsername(rs.getString("username"));
 				rjoint.setReimbAmount(rs.getBigDecimal("reimbamount"));
@@ -166,7 +170,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				rjoint.setReimbDescription(rs.getString("reimbdescription"));
 				rjoint.setTypeName(rs.getString("typename"));
 				rjoint.setStatusName(rs.getString("statusname"));
-				
+			
 				eList.add(rjoint);
 			}
 		} catch (SQLException e) {

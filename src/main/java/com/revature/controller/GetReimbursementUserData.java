@@ -3,6 +3,7 @@ package com.revature.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +36,7 @@ public class GetReimbursementUserData extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		ReimbursementDao reimbdao = new ReimbursementDaoImpl();
-		List<ReimbJoint> reimbList = reimbdao.getReimbursementAllUsers();
+		Set<ReimbJoint> reimbList = reimbdao.getReimbursementAllUsers();
 		System.out.println("Manager page is redirected");
 //response.getWriter().append("Served at: ").append(request.getContextPath());
 		PrintWriter pw = response.getWriter();

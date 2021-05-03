@@ -32,7 +32,7 @@
 			session.setAttribute("registeruserfailure", null);
 			}
 			%>
-	<div class="card">
+	<div class="card shadow-lg">
 		<div class="card-header">Featured</div>
 		<div class="card-body">
 			<!-- 	<h5 class="card-title">Special title treatment</h5>
@@ -100,7 +100,7 @@ function reset()
 	
 };
 </script>
-//<input type="text" id="myInput" oninput="myFunction()">
+
 <script>
 function myFunction() {
   var x = document.getElementById("username").value;

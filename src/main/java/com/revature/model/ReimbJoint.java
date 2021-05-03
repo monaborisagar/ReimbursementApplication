@@ -3,7 +3,7 @@ package com.revature.model;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-public class ReimbJoint {
+public class ReimbJoint implements Comparable<ReimbJoint> {
 
 	private int reimbId;
 	private String username;
@@ -184,6 +184,20 @@ public class ReimbJoint {
 				+ ", reimbSubmitted=" + reimbSubmitted + ", reimbResolved=" + reimbResolved + ", reimbDescription="
 				+ reimbDescription + ", reimbrecipturl=" + reimbrecipturl + ", reimbAuthor=" + reimbAuthor
 				+ ", typeName=" + typeName + ", statusName=" + statusName + "]";
+	}
+
+
+
+	@Override
+	public int compareTo(ReimbJoint o) {
+
+		 if(this.reimbId==o.reimbId)  
+		      return 0;  
+		   else if(this.reimbId<o.reimbId)  
+		      return 1;  
+		   else  
+		      return -1;
+		
 	}
 
 

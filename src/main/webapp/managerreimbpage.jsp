@@ -5,7 +5,7 @@
 
 <section  style="margin: 50px;" >
 <div id="alertforoperation"></div>
-<div class="card">
+<div class="card shadow-lg">
 	<div class="card-header">Reimbursement Permission</div>
 	<div class="card-body">
 		<div class="container " id="container"></div>

@@ -52,7 +52,9 @@ function abc() {
 	console.log("dsvsdvsd");
 	//var userli = [];
 	var userli = localStorage.getItem("key");
+	 
 	/*console.log(userli);
+	
 	let rus = JSON.stringify(new array[userli]);
 	let jsonpasr = JSON.parse(userli);*/
 	let dina = new Array();
@@ -85,9 +87,9 @@ function abc() {
 												 rows="3" col='2' disabled>${alluser['reimbDescription']}</textarea>`;
 		cell8.innerHTML = `${alluser['typeName']}`;
 		cell9.innerHTML = `${alluser['statusName']}`;
-		cell10.innerHTML = `<a href="#" class="btn btn-primary" id="${alluser['reimbId']}"  onclick="managerViewequest(this.id,${i})">View Recipt</a>
-		<a href="#" class="btn btn-primary" id="delete${alluser['reimbId']}"  onclick="deletemethod(this.id,${i})" style = "margin-bottom:10px;">Delete</a>
-                <a href="#" class="btn btn-primary"  id="approve${alluser['reimbId']}" onclick="managerApproverequest(this.id,${i})"  style = "margin-bottom:10px;">Approve</a>
+		cell10.innerHTML = `<a href="#" class="btn btn-primary" id="${alluser['reimbId']}" style="margin-bottom:5px;" onclick="managerViewequest(this.id,${i})">View Recipt</a>
+		<a href="#" class="btn btn-primary" id="delete${alluser['reimbId']}"  onclick="deletemethod(this.id,${i})" style = "margin-bottom:5px;">Delete</a>
+                <a href="#" class="btn btn-primary"  id="approve${alluser['reimbId']}" onclick="managerApproverequest(this.id,${i})"  style = "margin-bottom:5px;">Approve</a>
 					<a href="#" class="btn btn-primary" id="reject${alluser['reimbId']}"  onclick="managerRejectequest(this.id,${i})">Reject</a>
 					
 					                   
@@ -96,20 +98,28 @@ function abc() {
 		i++;
 	}
 	var $table = $('#allusertableid');
-	$(function() {
+	/*$(function() {
 
 		$table.bootstrapTable('refreshOptions', {
-			exportDataType: $(this).val()
-			/*data: alluserlist*/
+			exportDataType: $(this).val(),
+			data: callback
 		});
 
-	})
+	})*/
+	var userl = localStorage.getItem("key");
+	 
+
+	
+	let rus = JSON.stringify(new array[userl]);
+	  $('#formattable').bootstrapTable('load', rus);
+	
 
 	var trBoldBlue = $("table");
 
 
 	$(trBoldBlue).on("click", "tr", function() {
 		$(this).toggleClass("bold-blue");
+		
 	});
 
 }
@@ -124,6 +134,32 @@ function loadajaxfunction() {
 			let alluserlist = this.responseText;
 
 			localStorage.setItem("key", alluserlist);
+			// alluserlist  = JSON.stringify(alluserlisttest);
+			// console.log(alluserlistdata);
+			/*for(let m of alluserlist)
+			{
+			console.log(m);	
+			}*/
+			//abc();
+
+		}
+	};
+	xhttp.open("GET", "http://localhost:8081/ReimursementSystem/getReimbursementUserData", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send();
+
+}
+function callback() {
+
+	console.log("Callback ajax is loaded");
+
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			let alluserlist = JSON.parse(this.responseText);
+
+			localStorage.setItem("key", alluserlist);
+			return alluserlist;
 			// alluserlist  = JSON.stringify(alluserlisttest);
 			// console.log(alluserlistdata);
 			/*for(let m of alluserlist)

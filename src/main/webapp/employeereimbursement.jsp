@@ -5,7 +5,7 @@
 
 <div style="margin: 50px;">
 
-	<div class="card">
+	<div class="card shadow-lg">
 		<div class="card-header">Employee page</div>
 		<div class="card-body">
 
@@ -14,12 +14,13 @@
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item waves-effect waves-light"><a
 						class="nav-link" id="home-tab" data-toggle="tab" href="#home"
-						role="tab" aria-controls="home" aria-selected="false" onclick="displayPending()">Pending
-							Requests</a></li>
+						role="tab" aria-controls="home" aria-selected="false"
+						onclick="displayPending()">Pending Requests</a></li>
 					<li class="nav-item waves-effect waves-light"><a
 						class="nav-link" id="profile-tab" data-toggle="tab"
 						href="#profile" role="tab" aria-controls="profile"
-						aria-selected="false" onclick="displayApproved()">Approved Requests</a></li>
+						aria-selected="false" onclick="displayApproved()">Approved
+							Requests</a></li>
 					<li class="nav-item waves-effect waves-light"><a
 						class="nav-link active" id="contact-tab" data-toggle="tab"
 						href="#contact" role="tab" aria-controls="contact"
@@ -28,18 +29,17 @@
 				<div class="tab-content" id="myTabContent">
 					<div class="tab-pane fade" id="home" role="tabpanel"
 						aria-labelledby="home-tab">
-						<!-- <br /> <br /> --><br/>
-						
-						<section id="pendingrequest">
-							
-						</section>
+						<!-- <br /> <br /> -->
+						<br />
 
-                   
+						<section id="pendingrequest"></section>
+
+
 
 					</div>
 					<div class="tab-pane fade" id="profile" role="tabpanel"
 						aria-labelledby="profile-tab">
-						<br/>
+						<br />
 						<section id="approvedrequest">
 							<!-- <br /> <br />
 							<table class="table table-striped" style="align-content: center;">
@@ -97,7 +97,7 @@
 							</table>
 						
  -->
-</section>
+						</section>
 
 					</div>
 					<div class="tab-pane fade active show" id="contact" role="tabpanel"
@@ -124,7 +124,7 @@
 
 <div style="margin: 50px;" id="pending">
 
-	<div class="card">
+	<div class="card shadow-lg">
 		<div class="card-header">User Details</div>
 		<div class="card-body">
 			<!-- <h5 class="card-title">Special title treatment</h5>
@@ -232,24 +232,26 @@
 					<small id="descriptionhelp" class="form-text text-muted"></small>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="exampleInputEmail1">Receipt Image</label> <br /> <img
-						alt="no image now" src="#" id="output"> <small
+					<label for="exampleInputEmail1">Receipt Image</label> <br /> <a  id="vv" href="" target="_blank">
+					<img
+						 src="#" id="output2" width="100px" height="100px;"></a> <small
 						id="descriptionhelp" class="form-text text-muted"></small>
 				</div>
-				<div>
+				
+				<div >
 					<label class="form-label col-md-6" for="customFile"> Upload
-						Receipt </label> <input type="file" name="file" value="Attach"
-						id="upload" name="upload"
-						accept=".jpg,.png,.bmp" class="form-group col-md-6">
-
+						Receipt </label> <input type="file" name="file" value="Attach" id="upload"
+						name="upload" accept=".jpg,.png,.bmp" class="form-group col-md-6"
+						onchange="loadFile(event);">
+					
 				</div>
-
+                
 				<div class="form-group form-check ">
 					<input type="checkbox" class="form-check-input"
 						name="checkboxpolicy" id="exampleCheck1" required="required">
 					<label class="form-check-label" for="exampleCheck1">label</label>
-					<!-- I am hereBy confirm that information added by me is correct. --> 
-						
+					<!-- I am hereBy confirm that information added by me is correct. -->
+
 				</div>
 				<button type="submit" class="btn btn-primary" id="Accept">Accept</button>
 				<button type="button" class="btn btn-primary" id="Reject"
@@ -260,19 +262,21 @@
 	</div>
 
 </div>
+<<script type="text/javascript">
 
-
-<script type="text/javascript">
-/* document.getElementById('upload').addEventListener('change', (e)=>{
-	  const file = e.target.files[0];
-	    const reader = new FileReader();
-	    reader.onloadend = () => {
-	      const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
-	      localStorage.setItem('wallpaper', base64String);
-	      document.body.style.background = `url(data:image/jpg;base64,${base64String})`;
-	    };
-	    reader.readAsDataURL(file);
-	}) */
+var loadFile = function(event) {
+    var output = document.getElementById('output2');
+    var vv = document.getElementById('vv');
+console.log("fdvdfvdf");
+    output.src = URL.createObjectURL(event.target.files[0]);
+    
+    vv.href = URL.createObjectURL(event.target.files[0]);
+    console.log("fbsfdbgf");
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+       // free memory
+    }
+}
 function reset()
 {
 	alert("inside resdet");
@@ -282,8 +286,19 @@ function reset()
 	 document.getElementById("exampleFormControlTextarea1").value='';
 	 document.getElementById("upload").value='';
 	 document.getElementById("exampleCheck1").value='';
+	 //document.getElementById("output2").src='#';
+	 console.log("before remove");
+	 document.getElementById('output2').removeAttribute('src');
+   
+	 document.getElementById("vv").href='#';
+	 
 	
 };
+</script>
+
+<script type="text/javascript">
+
+
 	
 	function validate() {
 		//seetting dropdown
@@ -351,101 +366,20 @@ function reset()
 		return true;
 
 	}
-
-	/* var phnenumber = document.getElementById("phnenumber").value;
-	alert(phnenumber.length);
-	var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-	if (!(phoneno).test(phnenumber)) {
-		
-	
-		alert("phnenumber pattern is not matched ");
-		return false;
-	}
-	
-	 
-	    var dob =document.getElementById("date").value;
-	    alert("fdbdfb");
-	    var pattern = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
-	    alert(dob);
-	    
-	    if ( !pattern.test(dob)) {
-	    	
-	        alert("Invalid date of birth\n");
-	        return false;
-	    } */
-
-	/*  var valid=true;
-	 var fileid;
-	 var accept = document.getElementById("Accept");
-	 var reject = document.getElementById("Reject");
-	 function validate_fileupload(input_element)
-	 {
-	 console.log("comes inside of file");
-	 // var el = document.getElementById("feedback");
-	 fileid = input_element;
-	 let  fileName = input_element.value;
-	 var allowed_extensions = new Array("jpg","png","gif");
-	 var file_extension = fileName.split('.').pop(); 
-	 var flag=0;
-	 for(var i = 0; i < allowed_extensions.length; i++)
-	 {
-	 if(allowed_extensions[i]==file_extension)
-	 {
-	 //valid = true; // valid file extension
-	 // el.innerHTML = "Valid Format";
-	 //accept.disabled = false;
-	 flag=1;
-	 //reject.disabled=false; 
-	 return;
-	
-	 }
-	
-	 }
-	 if(flag=!=1)
-	 {
-	 valid = false;
-	 return false;
-	 }
-	 //  console.log("insidefv fvfefvfd reject file");
-	 // el.innerHTML="Invalid file";
-	 //accept.disabled = true;
-	 //       reject.disabled=true; 
-	 //valid = false;
-	 }
-	 function validationfordefault(){
-	 console.log("insde change");
-	 let inputstate = document.getElementById("inputState");
-	 let selectedReimDropdown = inputstate.value;
-	 if(selectedReimDropdown =="null" && inputstate.length ==0)
-	 {valid=false;
-	 return false;
-	 }
-	
-	
-	 /*  console.log(inputstate.value);
-	 valid=true; */
-
-	/*  function checkigDescriptionforblank()
-	 {
-	 let description = document.getElementById("exampleFormControlTextarea1");
-	 if(description.value == null)
-	 {
-	 valid = false;
-	 return false;
-	 }
-	
-	 }
-	 function valid_form()
-	 {
-	 validate_fileupload(input_element);
-	 validationfordefault();
-	 checkigDescriptionforblank();
-	 return valid;
-	 } */
 </script>
+	
+
 
 <script type="text/javascript" src="js/getReimbursementType.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
 <%@ include file="html/footer.jsp"%>

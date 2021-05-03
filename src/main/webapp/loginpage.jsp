@@ -25,15 +25,16 @@
 			<%
 			if (session.getAttribute("error1") != null) {
 			%>
-			<div class="alert alert-warning alert-dismissible fade show">
-				<strong>Warning!</strong> Please enter a valid value in all the
-				required fields before proceeding.
-				<button type="button" class="close" data-dismiss="alert alert-danger">&times;</button>
 
+			<div class="alert alert-danger alert-dismissible fade show"
+				id="idone">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<!-- <strong>Danger!</strong> -->
+				User and Password does not match with ERS Application.
 			</div>
 			<%
 			session.setAttribute("error1", null);
-			
+
 			}
 			if (session.getAttribute("Cache-Control") != null) {
 			%>
@@ -45,21 +46,27 @@
 			</div>
 			<%
 			session.setAttribute("Cache-Control", null);
-		
+
 			}
 			if (session.getAttribute("logoutsuccessmessage") != null) {
-				%>
-				<div class="alert alert-warning alert-dismissible fade show">
-					<strong>Success!</strong>
-					<%=session.getAttribute("logoutsuccessmessage")%>
-					<button type="button" class="close" data-dismiss="alert alert-success">&times;</button>
-
-				</div>
-				<%
-				session.setAttribute("logoutsuccessmessage", null);
+			%>
+			<%-- <div class="alert alert-success alert-dismissible fade show">
 				
-				}
-			
+				<button type="button" class="close"
+					data-dismiss="alert alert-success">&times;</button>
+<strong>Success!</strong>
+				<%=session.getAttribute("logoutsuccessmessage")%>
+			</div> --%>
+			<div class="alert alert-success alert-dismissible">
+				<strong>Warning!</strong>
+				<%=session.getAttribute("logoutsuccessmessage")%>
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+
+			</div>
+			<%
+			session.setAttribute("logoutsuccessmessage", null);
+
+			}
 			%>
 			<!-- Icon -->
 			<div class="fadeIn first">
@@ -67,15 +74,17 @@
 				<h3 style="padding: 20px;">Reimbursement Portal</h3>
 			</div>
 
-			<!-- Login Form -->
-			<form method="post" action="loginpage">
+			
+			<form method="post" action="loginpage1" style="align-self: center;">
 
 				<input type="text" id="username" class="fadeIn second"
 					name="username" placeholder="Username"> <input type="text"
 					id="password" class="fadeIn third" name="password"
 					placeholder="Password"> <input type="submit"
 					class="fadeIn fourth" value="Log In">
+				
 			</form>
+			
 
 			<!-- Remind Passowrd -->
 			<div id="formFooter">
@@ -98,6 +107,22 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+		crossorigin="anonymous"></script>
+	<script>
+  document.addEventListener('DOMContentLoaded', () => {
+	  $("#idone").show();
+	  setTimeout(function(){
+	    $(".myAlert-bottom").hide(); 
+	  }, 2000);
+  })
+</script>
 </body>
 
 

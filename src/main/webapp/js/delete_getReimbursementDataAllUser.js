@@ -87,7 +87,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
 				});
 
 			})
-
+            $('#formattable').bootstrapTable('load', data);
+         
 			var trBoldBlue = $("table");
 
 
