@@ -9,7 +9,7 @@ import com.revature.dao.UserDao;
 import com.revature.dao.UserDaoImpl;
 import com.revature.model.User;
 
-public final class Hasher {
+public class Hasher {
 	
 	Logger logger = Logger.getLogger(Hasher.class);
 	private final String SALT_PHRASE = "theoffice";

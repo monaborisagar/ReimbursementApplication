@@ -3,12 +3,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Bootstrap Example</title>
+<title class="fa fa-dollar" style="font-size:40px;color:red;text-shadow:2px 2px 4px #000000">ERS System</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/common.css">
 <!-- <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+	<style type="text/css">
+	
+	 .loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+	
+	</style>
 <style type="text/css">
 
 /* .card{
@@ -75,7 +99,7 @@
 		<a class="navbar-brand" href="#"
 			style="font-size: 30px; margin-left: 15px;"><!-- <i
 			class='far fa-handshake' style='font-size: 30px; color: white;'></i> -->
-			<i class="fa fa-dollar" style="font-size:40px;color:red;text-shadow:2px 2px 4px #000000"></i>
+			<i class="fa fa-dollar" style="font-size:30px;color:red;text-shadow:2px 2px 4px #000000"></i>
 			ERS </a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
@@ -88,7 +112,7 @@
 				if (session.getAttribute("isManager") != "true") {
 				%>
 				<!-- <li class="nav-item"><a class="nav-link" href="userprofile.jsp">Profile</a></li> -->
-				<li class="nav-item" style="margin-top: 15px;"><a class="nav-link"
+				<li class="nav-item" style="margin-top: 10px;"><a class="nav-link"
 					href="employeereimbursement.jsp" id="applyreimb">ApplyReimubursement</a></li>
 				<%
 				}

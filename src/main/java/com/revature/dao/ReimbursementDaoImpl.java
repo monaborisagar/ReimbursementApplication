@@ -191,11 +191,11 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		System.out.println("status is."+status+".");
 		if(status.equalsIgnoreCase("approve"))
 		{
-			  sql = "update reimbursement set statusid =2 where reimbid =?;";
+			  sql = "update reimbursement set statusid =2,reimbresolved =now() where reimbid =?;";
 			  System.out.println("fdvfdv inside ");
 		}
 		  else if(status.equalsIgnoreCase("reject"))	
-			 sql = "update reimbursement set statusid =3 where reimbid =?;";
+			 sql = "update reimbursement set statusid =3 ,reimbresolved =now() where reimbid =?;";
 		else if(status.equalsIgnoreCase("delete"))
 			sql = "DELETE FROM reimbursement where reimbid =?";
 		else

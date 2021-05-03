@@ -34,7 +34,7 @@
 
 						<section id="pendingrequest"></section>
 
-
+                       <div id="nomessage"></div>
 
 					</div>
 					<div class="tab-pane fade" id="profile" role="tabpanel"
@@ -98,10 +98,13 @@
 						
  -->
 						</section>
+						<div id="nomessage1"></div>
 
 					</div>
 					<div class="tab-pane fade active show" id="contact" role="tabpanel"
 						aria-labelledby="contact-tab">
+						    <div id="loader" class="center"></div>
+						
 						<br /> <br /> Etsy mixtape wayfarers, ethical wes anderson tofu
 						before they sold out mcsweeney's organic lomo retro fanny pack
 						lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork
@@ -249,7 +252,7 @@
 				<div class="form-group form-check ">
 					<input type="checkbox" class="form-check-input"
 						name="checkboxpolicy" id="exampleCheck1" required="required">
-					<label class="form-check-label" for="exampleCheck1">label</label>
+					<label class="form-check-label" for="exampleCheck1">I am hereBy confirm that information added by me is correct.</label>
 					<!-- I am hereBy confirm that information added by me is correct. -->
 
 				</div>
