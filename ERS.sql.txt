@@ -1,0 +1,142 @@
+CREATE TABLE public.reimbursement (
+	reimbid int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	reimbamount numeric(30) NOT NULL,
+	reimbsubmitted timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+	reimbresolved timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+	reimbdescription varchar(250) NULL,
+	reimbrecipturl varchar(250) NULL,
+	reimbauthor int4 NULL,
+	reimbresolver int4 NOT NULL,
+	statusid int4 NOT NULL,
+	typeid int4 NOT NULL,
+	CONSTRAINT reimbursement_pkey PRIMARY KEY (reimbid),
+	CONSTRAINT reimbursement_reimbamount_key UNIQUE (reimbamount),
+	CONSTRAINT fk_reimpstatus_statusid FOREIGN KEY (statusid) REFERENCES reimbursement_status(statusid) ON DELETE CASCADE,
+	CONSTRAINT fk_reimursetype_typeid FOREIGN KEY (typeid) REFERENCES reimbursement_type(typeid) ON DELETE CASCADE,
+	CONSTRAINT fk_user_author FOREIGN KEY (reimbauthor) REFERENCES users(userid) ON DELETE CASCADE,
+	CONSTRAINT fk_user_resolver FOREIGN KEY (reimbresolver) REFERENCES users(userid) ON DELETE CASCADE
+);
+ALTER TABLE reimbursement DROP CONSTRAINT reimbursement_reimbamount_key;
+
+CREATE TABLE public.reimbursement_status (
+	statusid int4 NOT NULL,
+	statusname varchar(30) NOT NULL,
+	CONSTRAINT reimbursement_status_pkey PRIMARY KEY (statusid),
+	CONSTRAINT reimbursement_status_statusname_key UNIQUE (statusname)
+);
+CREATE TABLE public.reimbursement_type (
+	typeid int4 NOT NULL,
+	typename varchar(30) NOT NULL,
+	CONSTRAINT reimbursement_type_pkey PRIMARY KEY (typeid),
+	CONSTRAINT reimbursement_type_typename_key UNIQUE (typename)
+);
+-- Drop table
+
+-- DROP TABLE public.users;
+
+CREATE TABLE public.users (
+	userid int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	username varchar(30) NOT NULL,
+	"password" varchar(350) NOT NULL,
+	firstname varchar(30) NOT NULL,
+	lastname varchar(30) NOT NULL,
+	email varchar(350) NOT NULL,
+	roleid int4 NOT NULL,
+	CONSTRAINT users_email_key UNIQUE (email),
+	CONSTRAINT users_pkey PRIMARY KEY (userid),
+	CONSTRAINT users_username_key UNIQUE (username),
+	CONSTRAINT fk_rollid FOREIGN KEY (roleid) REFERENCES users_roles(roleid) ON DELETE CASCADE
+);
+CREATE TABLE public.users_roles (
+	roleid int4 NOT NULL,
+	userrole varchar(30) NOT NULL,
+	CONSTRAINT users_roles_pkey PRIMARY KEY (roleid),
+	CONSTRAINT users_roles_userrole_key UNIQUE (userrole)
+);
+
+/*
+select * from users;
+select * from reimbursement; 
+alter table reimbursement ALTER COLUMN reimbamount TYPE numeric(38,2);
+insert into 
+reimbursement(reimbamount,reimbsubmitted,reimbresolved ,reimbdescription,reimbrecipturl,reimbauthor,reimbresolver,statusid,typeid)
+values(55,now(),now(),'this i expennse done for tesitng','C://mona/vfdv',2,4,1,1);
+
+
+--reimb query
+insert into 
+reimbursement(reimbamount,reimbsubmitted,reimbresolved ,reimbdescription,reimbrecipturl,reimbauthor,reimbresolver,statusid,typeid)
+values(55,now(),now(),'this is description ','C:/Users/nikun/eclipse-workspace/ReimursementSystem/src/main/webapp/images/WIN_20201015_12_06_28_Pro.jpg',2,4,1,1);
+insert into 
+reimbursement(reimbamount,reimbsubmitted,reimbresolved ,reimbdescription,reimbrecipturl,reimbauthor,reimbresolver,statusid,typeid)
+values(65.77,now(),now(),'this is dis 2','C:/Users/nikun/eclipse-workspace/ReimursementSystem/src/main/webapp/images/WIN_20201015_12_06_28_Pro.jpg',2,4,1,2);
+insert into 
+reimbursement(reimbamount,reimbsubmitted,reimbresolved ,reimbdescription,reimbrecipturl,reimbauthor,reimbresolver,statusid,typeid)
+values(455.77,now(),now(),'descriptrion 3','C:/Users/nikun/eclipse-workspace/ReimursementSystem/src/main/webapp/images/WIN_20201015_12_06_28_Pro.jpg',3,4,2,3);
+insert into 
+reimbursement(reimbamount,reimbsubmitted,reimbresolved ,reimbdescription,reimbrecipturl,reimbauthor,reimbresolver,statusid,typeid)
+values(67.77,now(),now(),'this i expennse donefbfgbtesitng','C:/Users/nikun/eclipse-workspace/ReimursementSystem/src/main/webapp/images/WIN_20201015_12_06_28_Pro.jpg',3,4,3,2);
+insert into 
+reimbursement(reimbamount,reimbsubmitted,reimbresolved ,reimbdescription,reimbrecipturl,reimbauthor,reimbresolver,statusid,typeid)
+values(767.88,now(),now(),'this i expennse done for tesitng','C:/Users/nikun/eclipse-workspace/ReimursementSystem/src/main/webapp/images/WIN_20201015_12_06_28_Pro.jpg',2,4,3,2);
+select * from users_roles;
+select * from users u2 where username ='mona';
+update reimbursement set statusid =2 where reimbid =1;
+select reimbid from reimbursement order by reimbid desc limit 1;
+select * from users;
+update users set password ='befc31aa6ab95cb18f0ffbaaaa9ef311fdbb6f22' where userid =5;
+update users set password = '8628f5accc64495c3e83bc02da904807eb2e06f1' where userid=4;
+select * from reimbursement r2 where statusid =1 and reimbauthor =2;
+select u.username ,reimbid,reimbamount ,reimbsubmitted ,reimbresolved ,reimbdescription,typename,statusname from reimbursement r inner join users u on r.reimbauthor =u.userid inner join reimbursement_type rt on rt.typeid =r.typeid  inner join reimbursement_status rs on rs.statusid =r.statusid  order by username ;
+--this is joint query for user and reimb 
+select * from users u inner join reimbursement r on u.userid = r.reimbauthor; 
+--adding data into staatus and type
+select * from reimbursement_status; --1 pending 2 approved 3 denied 
+select * from reimbursement_type; --1 shopping 2-certification 3-migrate
+insert into reimbursement_type values(1,'shopping');
+insert into reimbursement_type values(2,'certification');
+insert into reimbursement_type values(3,'migrate');
+insert into reimbursement_status values(1,'pending');
+insert into reimbursement_status values(2,'approved');
+insert into reimbursement_status values(3,'denied');
+
+select * from reimbursement r order by ;
+SELECT
+       first_name,
+       last_name
+FROM
+       customer
+ORDER BY
+       last_name DESC;
+--adding into roles table
+insert into users_roles values(1,'employee');
+insert into users_roles values(2,'manager');
+insert into users_roles  values(3,'admin');
+insert into users(username,password,firstname,lastname,email,roleid) values('mona','Mona@123','mona','bori','monaborisagar@gmail.com',1);
+insert into users(username,password,firstname,lastname,email,roleid) values('sona','Sona@123','Sona','rana','sonarana@gmail.com',1);
+insert into users(username,password,firstname,lastname,email,roleid) values('anmol','Anmol@123','anmol','shah','anmol@gmail.com',2);
+insert into users(username,password,firstname,lastname,email,roleid) values('admin','admin','mona','borisagar','borisagarmona107@gmail.com',3);
+
+
+--stored funciton 
+select * from users;
+delete from users where username ='test';
+create or replace function saveuser()
+returns varchar(10) as $$
+begin 
+	insert into users(username,password,firstname,lastname,email,roleid) values('testfunciton','test@123','test','test','test@gmail.com',1);
+  return 'success';
+end
+$$ language 'plpgsql';
+
+
+select * from users;
+SELECT USERID FROM USERS WHERE USERNAME='mona';
+select * from reimbursement_status;
+select * from reimbursement_type;
+select * from reimbursement r2 ;
+select * from users;
+select * from reimbursement r2  ;
+update reimbursement  set reimbresolved =now() where reimbid =24;
+update reimbursement set statusid =2 where reimbid =?;
+update users set username='krina', firstname='krina' where userid =24; */
