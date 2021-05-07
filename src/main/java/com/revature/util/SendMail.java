@@ -27,7 +27,7 @@ public boolean sendingmail(String to,String username,String temppassword)
 	//in gamil account setting please change allow less secure app to true 
 	  String host="smtp.gmail.com";  
 	  final String user="monaborisagar@gmail.com";//change accordingly  
-	  final String password="shivakrishnaram@mona";//change accordingly  
+	  final String password="";//change accordingly  
 	    
 	 // String to="monaborisagar@gmail.com";//change accordingly  
 	  
@@ -126,7 +126,7 @@ public boolean sendingmail(String to,String username,String temppassword)
 	     		+ "			<!-- Set text color to background color -->\r\n"
 	     		+ "			<div style=\"display: none; visibility: hidden; overflow: hidden; opacity: 0; font-size: 1px; line-height: 1px; height: 0; max-height: 0; max-width: 0;\r\n"
 	     		+ "				color: #2D3445;\" class=\"preheader\">\r\n"
-	     		+ "				Available on&nbsp;GitHub and&nbsp;CodePen. Highly compatible. Designer friendly. More than 50%&nbsp;of&nbsp;total email opens occurred on&nbsp;a&nbsp;mobile device&nbsp;— a&nbsp;mobile-friendly design is&nbsp;a&nbsp;must for&nbsp;email campaigns.</div>\r\n"
+	     		+ "				Available on&nbsp;GitHub and&nbsp;CodePen. Highly compatible. Designer friendly. More than 50%&nbsp;of&nbsp;total email opens occurred on&nbsp;a&nbsp;mobile device&nbsp;â€” a&nbsp;mobile-friendly design is&nbsp;a&nbsp;must for&nbsp;email campaigns.</div>\r\n"
 	     		+ "\r\n"
 	     		+ "			<!-- LOGO -->\r\n"
 	     		+ "			<!-- Image text color should be opposite to background color. Set your url, image src, alt and title. Alt text should fit the image size. Real image size should be x2. URL format: http://domain.com/?utm_source={{Campaign-Source}}&utm_medium=email&utm_content=logo&utm_campaign={{Campaign-Name}} -->\r\n"
@@ -142,7 +142,7 @@ public boolean sendingmail(String to,String username,String temppassword)
 	     		+ "	</tr>\r\n"
 	     		+ "\r\n"
 	     		+ "	<!-- HERO IMAGE -->\r\n"
-	     		+ "	<!-- Image text color should be opposite to background color. Set your url, image src, alt and title. Alt text should fit the image size. Real image size should be x2 (wrapper x2). Do not set height for flexible images (including \"auto\"). URL format: http://domain.com/?utm_source={{Campaign-Source}}&utm_medium=email&utm_content={{Ìmage-Name}}&utm_campaign={{Campaign-Name}} -->\r\n"
+	     		+ "	<!-- Image text color should be opposite to background color. Set your url, image src, alt and title. Alt text should fit the image size. Real image size should be x2 (wrapper x2). Do not set height for flexible images (including \"auto\"). URL format: http://domain.com/?utm_source={{Campaign-Source}}&utm_medium=email&utm_content={{ÃŒmage-Name}}&utm_campaign={{Campaign-Name}} -->\r\n"
 	     		+ "	<tr>\r\n"
 	     		+ "		<td align=\"center\" valign=\"top\" style=\"border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;\r\n"
 	     		+ "			padding-top: 0px;\" class=\"hero\"><a target=\"_blank\" style=\"text-decoration: none;\"\r\n"
